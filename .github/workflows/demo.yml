@@ -31,8 +31,14 @@ jobs:
           name: dist-files
           path: dist
   deploy:
-    needs: build
+    needs: build # cannot run in parallel as it requires the artifact from the step above
     runs-on: ubuntu-latest
     steps:
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+      - name: Output contents
+        run: ls
       - name: Deploy
         run: echo "Deploying..."
