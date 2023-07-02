@@ -28,7 +28,8 @@ jobs:
       - name: Upload artifact
         uses: actions/checkout@v3
         with:
-          name: dist
+          name: dist-files
+          path: dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
